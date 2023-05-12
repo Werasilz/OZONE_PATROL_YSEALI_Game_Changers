@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    path: Assets/Scenes/Main Scenes/[0] LoadingScene.unity
+    guid: 1fae252294001844a8fef7c659d3f1b6
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[1] MainMenu.unity
+    guid: 381b23f43de2c12458b303fb4fb9c085
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[2] Gameplay.unity
+    guid: f1fe16468876ac247bcdd8849b8d99ac
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[3] PersistentScene.unity
+    guid: 51e2270e97646b94989aa6d96f1b985f
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 87ab5d77cd362469d82e03f715eee633, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 92536f5d02fc64b88ba07a8a4b142ff2, type: 2}

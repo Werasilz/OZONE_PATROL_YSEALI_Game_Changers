@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -52,3 +53,4 @@ public class EnterPlayModeOptionsWindow : EditorWindow
         EditorGUI.EndDisabledGroup();
     }
 }
+#endif
