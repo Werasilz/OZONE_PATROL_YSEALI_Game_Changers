@@ -12,10 +12,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Scenes/[1] MainMenu.unity
     guid: 381b23f43de2c12458b303fb4fb9c085
   - enabled: 1
-    path: Assets/Scenes/Main Scenes/[2] Gameplay.unity
+    path: Assets/Scenes/Main Scenes/[2] Level Select.unity
+    guid: c53298ce9a3d04a1a8f6dc134ec238d8
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[3.1] City Map.unity
     guid: f1fe16468876ac247bcdd8849b8d99ac
   - enabled: 1
-    path: Assets/Scenes/Main Scenes/[3] PersistentScene.unity
+    path: Assets/Scenes/Main Scenes/[3.2] Town Map.unity
+    guid: 4d33654d37aef4f9d90b5e0dc3b4082a
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[3.3] Forest Map.unity
+    guid: 7f1f0e26605d540f3a64a29a38267469
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[4] Summary.unity
+    guid: 5d3b490caf57744298aaaec673d9d934
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/[99] PersistentScene.unity
     guid: 51e2270e97646b94989aa6d96f1b985f
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 87ab5d77cd362469d82e03f715eee633, type: 2}

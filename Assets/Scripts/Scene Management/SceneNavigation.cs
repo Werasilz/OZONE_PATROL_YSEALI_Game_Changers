@@ -7,9 +7,24 @@ public class SceneNavigation : MonoBehaviour
         FindObjectOfType<SceneLoaderManager>().LoadMainMenu();
     }
 
-    public void LoadGameplay()
+    public void LoadLevelSelect()
     {
-        FindObjectOfType<SceneLoaderManager>().LoadGameplay();
+        FindObjectOfType<SceneLoaderManager>().LoadLevelSelect();
+    }
+
+    public void LoadCityMap()
+    {
+        FindObjectOfType<SceneLoaderManager>().LoadCityMap();
+    }
+
+    public void LoadTownMap()
+    {
+        FindObjectOfType<SceneLoaderManager>().LoadTownMap();
+    }
+
+    public void LoadForestMap()
+    {
+        FindObjectOfType<SceneLoaderManager>().LoadForestMap();
     }
 
     public void ExitGame()

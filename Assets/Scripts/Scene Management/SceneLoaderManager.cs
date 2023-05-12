@@ -62,7 +62,7 @@ public class SceneLoaderManager : MonoBehaviour
         if (debugSessionTime) Debug.Log("Game Session Lasted " + timeDifference);
     }
 
-    private string GetScneName(SceneIndexes activeScene)
+    private string GetSceneName(SceneIndexes activeScene)
     {
         return SceneManager.GetSceneByBuildIndex((int)currentActiveScene).name;
     }
@@ -71,13 +71,31 @@ public class SceneLoaderManager : MonoBehaviour
     [ContextMenu("Load Main Menu")]
     public void LoadMainMenu()
     {
-        LoadScene(GetScneName(currentActiveScene), scenes[(int)SceneIndexes.MainMenu].Name);
+        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.MainMenu].Name);
     }
 
-    [ContextMenu("Load Gameplay")]
-    public void LoadGameplay()
+    [ContextMenu("Load Level Select")]
+    public void LoadLevelSelect()
     {
-        LoadScene(GetScneName(currentActiveScene), scenes[(int)SceneIndexes.Gameplay].Name);
+        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.LevelSelect].Name);
+    }
+
+    [ContextMenu("Load City Map")]
+    public void LoadCityMap()
+    {
+        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.CityMap].Name);
+    }
+
+    [ContextMenu("Load Town Map")]
+    public void LoadTownMap()
+    {
+        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.TownMap].Name);
+    }
+
+    [ContextMenu("Load Forest Map")]
+    public void LoadForestMap()
+    {
+        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.ForestMap].Name);
     }
     #endregion
 
@@ -149,5 +167,9 @@ public enum SceneIndexes
 {
     LoadingScene = 0,
     MainMenu = 1,
-    Gameplay = 2,
+    LevelSelect = 2,
+    CityMap = 3,
+    TownMap = 4,
+    ForestMap = 5,
+    Summary = 6,
 }
