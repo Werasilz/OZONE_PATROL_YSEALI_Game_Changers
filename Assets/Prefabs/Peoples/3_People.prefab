@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617434150955806873}
   - component: {fileID: 1514889416986842036}
+  - component: {fileID: -8487541838140700549}
   m_Layer: 0
   m_Name: 3_People
   m_TagString: Untagged
@@ -53,6 +54,17 @@ MonoBehaviour:
   timeElapsed: 0
   timeIndicatorBG: {fileID: 848078950899875864}
   timeIndicator: {fileID: 5004902249676442854}
+--- !u!210 &-8487541838140700549
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617434150955806852}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 15
 --- !u!1 &2666989183286646054
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,8 +221,8 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillClockwise: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8269992111177272075
@@ -349,7 +361,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3439699607534639919
 MonoBehaviour:

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617434150955806873}
   - component: {fileID: 1310020545214667767}
+  - component: {fileID: -2207830423518786864}
   m_Layer: 0
   m_Name: Bus
   m_TagString: Untagged
@@ -47,6 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountText: {fileID: 607091664724514549}
+--- !u!210 &-2207830423518786864
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617434150955806852}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
 --- !u!1 &3350723983912584854
 GameObject:
   m_ObjectHideFlags: 0

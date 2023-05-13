@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106754934941748577}
   - component: {fileID: 794776255150466575}
+  - component: {fileID: -8205913986384907702}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -47,6 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountText: {fileID: 1244522723478219533}
+--- !u!210 &-8205913986384907702
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106754934941748604}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
 --- !u!1 &4010901596370025326
 GameObject:
   m_ObjectHideFlags: 0

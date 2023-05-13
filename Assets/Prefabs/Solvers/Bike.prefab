@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966847338256657488}
   - component: {fileID: 663869713836951358}
+  - component: {fileID: -4730661672448113229}
   m_Layer: 0
   m_Name: Bike
   m_TagString: Untagged
@@ -47,6 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountText: {fileID: 1401881609470134844}
+--- !u!210 &-4730661672448113229
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966847338256657485}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
 --- !u!1 &3861978481414003295
 GameObject:
   m_ObjectHideFlags: 0
