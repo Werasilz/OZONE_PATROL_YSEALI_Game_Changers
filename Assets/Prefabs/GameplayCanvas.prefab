@@ -575,10 +575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f906a37b1377e4700993b26f6f02eced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solverPrefab: {fileID: 966847338256657485, guid: f9d2b7cd0495245a8bf9e1064514c465, type: 3}
+  vehiclePrefab: {fileID: 966847338256657485, guid: f9d2b7cd0495245a8bf9e1064514c465, type: 3}
   scoreRequired: 1
-  solverSpawnPoint: {fileID: 0}
-  createdSolver: {fileID: 0}
+  pollutionReduceScore: 10
+  vehicleSpawnPoint: {fileID: 0}
+  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
   timeToGetIntoLine: 1.5
   currentScore: 0
@@ -733,10 +734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f906a37b1377e4700993b26f6f02eced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solverPrefab: {fileID: 1617434150955806852, guid: ab4bf0ec5659448d484c7a351636de3b, type: 3}
+  vehiclePrefab: {fileID: 1617434150955806852, guid: ab4bf0ec5659448d484c7a351636de3b, type: 3}
   scoreRequired: 5
-  solverSpawnPoint: {fileID: 0}
-  createdSolver: {fileID: 0}
+  pollutionReduceScore: 20
+  vehicleSpawnPoint: {fileID: 0}
+  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
   timeToGetIntoLine: 1.5
   currentScore: 0
@@ -1280,10 +1282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f906a37b1377e4700993b26f6f02eced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solverPrefab: {fileID: 1106754934941748604, guid: b001d8491787a4fc1a3acbaf80444b6c, type: 3}
+  vehiclePrefab: {fileID: 1106754934941748604, guid: b001d8491787a4fc1a3acbaf80444b6c, type: 3}
   scoreRequired: 10
-  solverSpawnPoint: {fileID: 0}
-  createdSolver: {fileID: 0}
+  pollutionReduceScore: 30
+  vehicleSpawnPoint: {fileID: 0}
+  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
   timeToGetIntoLine: 1.5
   currentScore: 0

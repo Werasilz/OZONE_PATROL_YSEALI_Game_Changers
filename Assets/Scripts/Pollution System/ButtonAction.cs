@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class ButtonAction : MonoBehaviour
 {
-    [Header("Solve Unit")]
-    [SerializeField] private GameObject solverPrefab;
+    [Header("Vehicle")]
+    [SerializeField] private GameObject vehiclePrefab;
     [SerializeField] private int scoreRequired;
-    [SerializeField] private Transform solverSpawnPoint;
-    [SerializeField] private GameObject createdVehicle;
+    [SerializeField] private int pollutionReduceScore;
+    [SerializeField] private Transform vehicleSpawnPoint;
+    private GameObject createdVehicle;
 
     [Header("Line")]
     [SerializeField] private LineSpawner lineSpawner;
@@ -30,7 +31,7 @@ public class ButtonAction : MonoBehaviour
         if (createdVehicle == null && isCooldownActive == false)
         {
             // Spawn solver unit
-            GameObject newSolver = Instantiate(solverPrefab, solverSpawnPoint.position, Quaternion.identity);
+            GameObject newSolver = Instantiate(vehiclePrefab, vehicleSpawnPoint.position, Quaternion.identity);
             createdVehicle = newSolver;
             StartCoroutine(GetPeopleIntoLine());
             StartCoroutine(StartCooldown());
@@ -53,6 +54,7 @@ public class ButtonAction : MonoBehaviour
             {
                 yield return new WaitForSeconds(1);
                 Destroy(createdVehicle);
+                PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform);
                 break;
             }
 

@@ -25,7 +25,7 @@ public class LineSpawner : MonoBehaviour
 
         IEnumerator SpawnPeople()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
 
             for (int i = 0; i < 5; i++)
             {

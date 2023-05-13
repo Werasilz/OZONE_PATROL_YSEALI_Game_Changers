@@ -8,6 +8,7 @@ public class People : MonoBehaviour
     private Coroutine countingCoroutine;
 
     [Header("Pollution")]
+    [SerializeField] private int pollutionReduceScore;
     [SerializeField] private GameObject pollutionMonsterPrefab;
 
     [Header("Cooldown")]
@@ -91,7 +92,6 @@ public class People : MonoBehaviour
         lineSpawner.RemoveFirstPeople();
 
         // Reduce ozone
-        PollutionManager.Instance.AddPollutionScore(10);
-        GameObject newPopup = Instantiate(popup, popupSpawnPoint.position, Quaternion.identity);
+        PollutionManager.Instance.AddPollutionScore(pollutionReduceScore, popupSpawnPoint);
     }
 }
