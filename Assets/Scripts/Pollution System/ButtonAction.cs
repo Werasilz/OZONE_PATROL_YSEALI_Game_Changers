@@ -8,7 +8,7 @@ public class ButtonAction : MonoBehaviour
     [SerializeField] private GameObject solverPrefab;
     [SerializeField] private int scoreRequired;
     [SerializeField] private Transform solverSpawnPoint;
-    [SerializeField] private GameObject createdSolver;
+    [SerializeField] private GameObject createdVehicle;
 
     [Header("Line")]
     [SerializeField] private LineSpawner lineSpawner;
@@ -27,11 +27,11 @@ public class ButtonAction : MonoBehaviour
 
     public void Interact()
     {
-        if (createdSolver == null && isCooldownActive == false)
+        if (createdVehicle == null && isCooldownActive == false)
         {
             // Spawn solver unit
             GameObject newSolver = Instantiate(solverPrefab, solverSpawnPoint.position, Quaternion.identity);
-            createdSolver = newSolver;
+            createdVehicle = newSolver;
             StartCoroutine(GetPeopleIntoLine());
             StartCoroutine(StartCooldown());
         }
@@ -44,7 +44,7 @@ public class ButtonAction : MonoBehaviour
             yield return new WaitForSeconds(timeToGetIntoLine);
 
             currentScore += 1;
-            createdSolver.GetComponent<SolverUnit>().SetAmountText(currentScore);
+            createdVehicle.GetComponent<Vehicle>().SetAmountText(currentScore, scoreRequired);
             Destroy(lineSpawner.GetSpawnedPeople[0].gameObject);
             lineSpawner.RemoveFirstPeople();
 
@@ -52,7 +52,7 @@ public class ButtonAction : MonoBehaviour
             if (currentScore == scoreRequired)
             {
                 yield return new WaitForSeconds(1);
-                Destroy(createdSolver);
+                Destroy(createdVehicle);
                 break;
             }
 
