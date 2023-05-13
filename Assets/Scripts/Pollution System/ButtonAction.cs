@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class ButtonAction : MonoBehaviour
 {
     [Header("Solve Unit")]
-    [SerializeField] private Solver solver;
+    [SerializeField] private GameObject solverPrefab;
+    [SerializeField] private int scoreRequired;
     [SerializeField] private Transform solverSpawnPoint;
     [SerializeField] private GameObject createdSolver;
 
@@ -17,8 +18,9 @@ public class ButtonAction : MonoBehaviour
     public int currentScore;
 
     [Header("Cooldown")]
-    [SerializeField] private bool isCooldownActive;
+    [SerializeField] private float cooldownTime;
     [SerializeField] private float remainingCooldownTime;
+    [SerializeField] private bool isCooldownActive;
 
     [Header("User Interface")]
     [SerializeField] private Image cooldownIndicator;
@@ -28,23 +30,23 @@ public class ButtonAction : MonoBehaviour
         if (createdSolver == null && isCooldownActive == false)
         {
             // Spawn solver unit
-            GameObject newSolver = Instantiate(solver.solverPrefab, solverSpawnPoint.position, Quaternion.identity);
+            GameObject newSolver = Instantiate(solverPrefab, solverSpawnPoint.position, Quaternion.identity);
             createdSolver = newSolver;
-            StartCoroutine(GetInLine(createdSolver.GetComponent<SolverUnit>()));
+            StartCoroutine(GetInLine());
             StartCoroutine(StartCooldown());
         }
     }
 
-    public IEnumerator GetInLine(SolverUnit solverUnit)
+    public IEnumerator GetInLine()
     {
-        while (currentScore < solver.scoreRequired)
+        while (currentScore < scoreRequired)
         {
             yield return new WaitForSeconds(timeToGetInLine);
             currentScore += 1;
-            solverUnit.SetAmountText(currentScore);
-            lineSpawner.RemoveFirstPoint();
+            createdSolver.GetComponent<SolverUnit>().SetAmountText(currentScore);
+            lineSpawner.RemoveFirstPeople();
 
-            if (currentScore == solver.scoreRequired)
+            if (currentScore == scoreRequired)
             {
                 yield return new WaitForSeconds(1);
                 Destroy(createdSolver);
@@ -67,13 +69,13 @@ public class ButtonAction : MonoBehaviour
 
         // Start cooldown
         isCooldownActive = true;
-        remainingCooldownTime = solver.cooldownTime;
+        remainingCooldownTime = cooldownTime;
 
         // Cooling down
         while (remainingCooldownTime > 0f)
         {
             remainingCooldownTime -= Time.deltaTime;
-            cooldownIndicator.fillAmount = remainingCooldownTime / solver.cooldownTime;
+            cooldownIndicator.fillAmount = remainingCooldownTime / cooldownTime;
             yield return null;
         }
 

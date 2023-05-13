@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1617434150955806873}
   - component: {fileID: 1617434150955806872}
   - component: {fileID: 1617434150955806854}
+  - component: {fileID: -3332391648244569444}
   m_Layer: 0
   m_Name: People2
   m_TagString: Untagged
@@ -96,3 +97,21 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
+--- !u!114 &-3332391648244569444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617434150955806852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a855d88905392436eab2e99fdab60de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineSpawner: {fileID: 0}
+  pollutionMonsterPrefab: {fileID: 0}
+  minStartTime: 3
+  maxStartTime: 5
+  timeElapsed: 0
+  timeIndicator: {fileID: 0}
