@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class DragAndDropManager : MonoBehaviour
+public class DragAndDropManager : Singleton<DragAndDropManager>
 {
     private Vector3 velocity = Vector3.zero;
     private Camera mainCamera;
@@ -10,10 +10,15 @@ public class DragAndDropManager : MonoBehaviour
     [Header("Drag Settings")]
     [SerializeField] private float mouseDragSpeed = 0.05f;
 
+    [Header("Drag Status")]
+    private IDraggable draggable;
+    public bool isDragging => draggable != null;
+
     [HideInInspector] public bool debugHit;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         mainCamera = Camera.main;
     }
 
@@ -35,10 +40,10 @@ public class DragAndDropManager : MonoBehaviour
 
         if (hit2D.collider != null)
         {
-            // Hit object and there have the tag "Dragable" or have a script with IDragable interface
-            if (/*hit2D.collider.gameObject.CompareTag("Dragable") ||*/ hit2D.collider.gameObject.GetComponent<IDraggable>() != null)
+            // Hit object and there have the tag "Draggable" or have a script with IDraggable interface
+            if (/*hit2D.collider.gameObject.CompareTag("Draggable") ||*/ hit2D.collider.gameObject.GetComponent<IDraggable>() != null)
             {
-                if (debugHit) print("Hit Dragable Object at position " + touchPosition);
+                if (debugHit) print("Hit Draggable Object at position " + touchPosition);
 
                 // Call Drag Update for set position of the object to touch position
                 StartCoroutine(DragUpdate(hit2D.collider.gameObject));
@@ -65,14 +70,14 @@ public class DragAndDropManager : MonoBehaviour
 
     private IEnumerator DragUpdate(GameObject clickedObject)
     {
-        // Get IDragable interface
-        clickedObject.TryGetComponent<IDraggable>(out var dragable);
+        // Get IDraggable interface
+        clickedObject.TryGetComponent<IDraggable>(out draggable);
 
         // Drag object is not ready
-        if (dragable?.IsReadyToDrag == false) yield break;
+        if (draggable?.IsReadyToDrag == false) yield break;
 
-        // If IDragable interface not null then call OnStartDrag()
-        dragable?.OnStartDrag();
+        // If IDraggable interface not null then call OnStartDrag()
+        draggable?.OnStartDrag();
 
         // Distance from clicked object and camera (default is 10)
         float initialDistance = Vector3.Distance(clickedObject.transform.position, mainCamera.transform.position);
@@ -108,7 +113,7 @@ public class DragAndDropManager : MonoBehaviour
             yield return null;
         }
 
-        // If IDragable interface not null then call OnEndDrag()
-        dragable?.OnEndDrag();
+        // If IDraggable interface not null then call OnEndDrag()
+        draggable?.OnEndDrag();
     }
 }
