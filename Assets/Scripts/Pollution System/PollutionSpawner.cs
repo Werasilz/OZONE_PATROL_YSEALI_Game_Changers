@@ -7,8 +7,10 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
     [SerializeField] private GameObject pollutionMonsterPrefab;
 
     [Header("Spawn Point")]
-    [SerializeField] private Transform leftSpawnPoint;
-    [SerializeField] private Transform rightSpawnPoint;
+    [SerializeField] private Transform bottomLeftSpawnPoint;
+    [SerializeField] private Transform bottomRightSpawnPoint;
+    [SerializeField] private Transform topLeftSpawnPoint;
+    [SerializeField] private Transform topRightSpawnPoint;
 
     [Header("Spawner")]
     [SerializeField] private float minSpawnTime;
@@ -38,7 +40,7 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
             elapsedTime = 0;
 
             // Spawn the pollution
-            Vector3 spawnPosition = new Vector3(Random.Range(leftSpawnPoint.position.x, rightSpawnPoint.position.x), leftSpawnPoint.position.y);
+            Vector3 spawnPosition = new Vector3(Random.Range(bottomLeftSpawnPoint.position.x, bottomRightSpawnPoint.position.x), Random.Range(bottomLeftSpawnPoint.position.y, topLeftSpawnPoint.position.y));
             GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
         }
     }

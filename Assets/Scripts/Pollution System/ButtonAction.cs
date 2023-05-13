@@ -2,13 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonAction : MonoBehaviour, IInteractable
+public class ButtonAction : MonoBehaviour
 {
     [Header("Solve Unit")]
     [SerializeField] private Solver solver;
     [SerializeField] private Transform solverSpawnPoint;
     [SerializeField] private GameObject createdSolver;
+
+    [Header("Line")]
+    [SerializeField] private LineSpawner lineSpawner;
     [SerializeField] private float timeToGetInLine;
+
+    [Header("Score")]
     public int currentScore;
 
     [Header("Cooldown")]
@@ -20,7 +25,7 @@ public class ButtonAction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (createdSolver == null)
+        if (createdSolver == null && isCooldownActive == false)
         {
             // Spawn solver unit
             GameObject newSolver = Instantiate(solver.solverPrefab, solverSpawnPoint.position, Quaternion.identity);
@@ -37,6 +42,7 @@ public class ButtonAction : MonoBehaviour, IInteractable
             yield return new WaitForSeconds(timeToGetInLine);
             currentScore += 1;
             solverUnit.SetAmountText(currentScore);
+            lineSpawner.RemoveFirstPoint();
 
             if (currentScore == solver.scoreRequired)
             {

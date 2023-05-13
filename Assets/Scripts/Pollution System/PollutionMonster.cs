@@ -5,10 +5,16 @@ public class PollutionMonster : MonoBehaviour, IInteractable
 {
     [SerializeField] private float yAxisDestination;
     [SerializeField] private float speed;
+    [SerializeField] private SpriteRenderer monsterImage;
+    [SerializeField] private SpriteRenderer deadImage;
+    private bool isDead;
     private Coroutine flyCoroutine;
 
     void Start()
     {
+        monsterImage.enabled = true;
+        deadImage.enabled = false;
+
         flyCoroutine = StartCoroutine(Fly());
 
         IEnumerator Fly()
@@ -27,7 +33,13 @@ public class PollutionMonster : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        StopCoroutine(flyCoroutine);
-        Destroy(gameObject);
+        if (isDead == false)
+        {
+            isDead = true;
+            StopCoroutine(flyCoroutine);
+            monsterImage.enabled = false;
+            deadImage.enabled = true;
+            Destroy(gameObject, 0.1f);
+        }
     }
 }
