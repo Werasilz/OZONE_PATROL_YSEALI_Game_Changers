@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 0_Solver
   m_EditorClassIdentifier: 
   solverName: Bicycle
+  solverPrefab: {fileID: 1617434150955806852, guid: ab4bf0ec5659448d484c7a351636de3b, type: 3}
   level: 1
-  requesterRequired: 1
+  scoreRequired: 1
   cooldownTime: 3

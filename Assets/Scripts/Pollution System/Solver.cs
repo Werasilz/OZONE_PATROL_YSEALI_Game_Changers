@@ -4,10 +4,11 @@ using UnityEngine;
 public class Solver : ScriptableObject
 {
     public string solverName;
+    public GameObject solverPrefab;
 
     [Header("Solver Stats")]
     public int level;
-    public int requesterRequired;
+    public int scoreRequired;
 
     [Header("Cooldown")]
     public float cooldownTime;

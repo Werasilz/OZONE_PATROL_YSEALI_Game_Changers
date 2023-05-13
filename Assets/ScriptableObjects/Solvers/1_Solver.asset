@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1_Solver
   m_EditorClassIdentifier: 
   solverName: Bus
+  solverPrefab: {fileID: 1617434150955806852, guid: ab4bf0ec5659448d484c7a351636de3b, type: 3}
   level: 1
-  requesterRequired: 3
+  scoreRequired: 3
   cooldownTime: 6
