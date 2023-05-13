@@ -12,10 +12,10 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
     [SerializeField] private Transform topLeftSpawnPoint;
     [SerializeField] private Transform topRightSpawnPoint;
 
-    [Header("Spawner")]
-    [SerializeField] private float minSpawnTime;
-    [SerializeField] private float maxSpawnTime;
-    [SerializeField] private float elapsedTime;
+    // [Header("Spawner")]
+    // [SerializeField] private float minSpawnTime;
+    // [SerializeField] private float maxSpawnTime;
+    // [SerializeField] private float elapsedTime;
 
     public void Spawn()
     {
@@ -24,25 +24,25 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
         GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
     }
 
-    IEnumerator Spawner()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            elapsedTime = Random.Range(minSpawnTime, maxSpawnTime + 1f);
+    // IEnumerator Spawner()
+    // {
+    //     for (int i = 0; i < 100; i++)
+    //     {
+    //         elapsedTime = Random.Range(minSpawnTime, maxSpawnTime + 1f);
 
-            while (elapsedTime > 0)
-            {
-                elapsedTime -= Time.deltaTime;
+    //         while (elapsedTime > 0)
+    //         {
+    //             elapsedTime -= Time.deltaTime;
 
-                yield return null;
-            }
+    //             yield return null;
+    //         }
 
-            // Clear timer
-            elapsedTime = 0;
+    //         // Clear timer
+    //         elapsedTime = 0;
 
-            // Spawn the pollution
-            Vector3 spawnPosition = new Vector3(Random.Range(bottomLeftSpawnPoint.position.x, bottomRightSpawnPoint.position.x), Random.Range(bottomLeftSpawnPoint.position.y, topLeftSpawnPoint.position.y));
-            GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
-        }
-    }
+    //         // Spawn the pollution
+    //         Vector3 spawnPosition = new Vector3(Random.Range(bottomLeftSpawnPoint.position.x, bottomRightSpawnPoint.position.x), Random.Range(bottomLeftSpawnPoint.position.y, topLeftSpawnPoint.position.y));
+    //         GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
+    //     }
+    // }
 }

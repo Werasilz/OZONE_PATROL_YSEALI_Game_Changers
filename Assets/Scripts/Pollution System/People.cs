@@ -40,7 +40,7 @@ public class People : MonoBehaviour
     {
         while (Vector2.Distance(transform.position, position) > 0.1f)
         {
-            transform.Translate(Vector3.right * 1 * Time.deltaTime);
+            transform.Translate(Vector3.right * 2f * Time.deltaTime);
             yield return null;
         }
 
@@ -68,6 +68,7 @@ public class People : MonoBehaviour
             {
                 if (timeIndicator.enabled == false)
                 {
+                    yield return new WaitForSeconds(0.1f);
                     timeIndicatorBG.enabled = true;
                     timeIndicator.enabled = true;
                 }

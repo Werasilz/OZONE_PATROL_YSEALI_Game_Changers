@@ -12,7 +12,7 @@ public class ButtonAction : MonoBehaviour
 
     [Header("Line")]
     [SerializeField] private LineSpawner lineSpawner;
-    [SerializeField] private float timeToGetInLine;
+    [SerializeField] private float timeToGetIntoLine;
 
     [Header("Score")]
     public int currentScore;
@@ -32,31 +32,32 @@ public class ButtonAction : MonoBehaviour
             // Spawn solver unit
             GameObject newSolver = Instantiate(solverPrefab, solverSpawnPoint.position, Quaternion.identity);
             createdSolver = newSolver;
-            StartCoroutine(GetInLine());
+            StartCoroutine(GetPeopleIntoLine());
             StartCoroutine(StartCooldown());
         }
     }
 
-    public IEnumerator GetInLine()
+    IEnumerator GetPeopleIntoLine()
     {
         while (currentScore < scoreRequired)
         {
-            yield return new WaitForSeconds(timeToGetInLine);
+            yield return new WaitForSeconds(timeToGetIntoLine);
+
             currentScore += 1;
             createdSolver.GetComponent<SolverUnit>().SetAmountText(currentScore);
+            Destroy(lineSpawner.GetSpawnedPeople[0].gameObject);
             lineSpawner.RemoveFirstPeople();
 
+            // Reach the score
             if (currentScore == scoreRequired)
             {
                 yield return new WaitForSeconds(1);
                 Destroy(createdSolver);
+                break;
             }
 
             yield return null;
         }
-
-        currentScore = 0;
-        createdSolver = null;
     }
 
     IEnumerator StartCooldown()
