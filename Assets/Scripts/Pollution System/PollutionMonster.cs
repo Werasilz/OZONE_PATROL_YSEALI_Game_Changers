@@ -26,7 +26,7 @@ public class PollutionMonster : MonoBehaviour, IInteractable
             }
 
             // Reach the ceiling
-            PollutionManager.Instance.AddPollutionScore(1);
+            PollutionManager.Instance.AddPollutionScore(5);
             Destroy(gameObject);
         }
     }

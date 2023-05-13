@@ -20,6 +20,10 @@ public class People : MonoBehaviour
     [SerializeField] private Image timeIndicatorBG;
     [SerializeField] private Image timeIndicator;
 
+    [Header("Popup")]
+    [SerializeField] private Transform popupSpawnPoint;
+    [SerializeField] private GameObject popup;
+
     public void Init(LineSpawner lineSpawner, Vector3 position)
     {
         this.lineSpawner = lineSpawner;
@@ -85,6 +89,9 @@ public class People : MonoBehaviour
 
         Destroy(gameObject);
         lineSpawner.RemoveFirstPeople();
-        PollutionSpawner.Instance.Spawn();
+
+        // Reduce ozone
+        PollutionManager.Instance.AddPollutionScore(10);
+        GameObject newPopup = Instantiate(popup, popupSpawnPoint.position, Quaternion.identity);
     }
 }
