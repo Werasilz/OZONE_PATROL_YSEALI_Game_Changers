@@ -17,10 +17,11 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
     [SerializeField] private float maxSpawnTime;
     [SerializeField] private float elapsedTime;
 
-    public void Start()
+    public void Spawn()
     {
-        // Start spawner
-        StartCoroutine(Spawner());
+        // Spawn the pollution
+        Vector3 spawnPosition = new Vector3(Random.Range(bottomLeftSpawnPoint.position.x, bottomRightSpawnPoint.position.x), Random.Range(bottomLeftSpawnPoint.position.y, topLeftSpawnPoint.position.y));
+        GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
     }
 
     IEnumerator Spawner()

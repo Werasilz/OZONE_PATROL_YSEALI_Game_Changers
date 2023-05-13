@@ -6,10 +6,14 @@ public class LineSpawner : MonoBehaviour
 {
     [Header("People")]
     [SerializeField] private GameObject[] peoplePrefabs;
-    [SerializeField] private Transform[] standingPoints;
     [SerializeField] private List<People> spawnedPeople;
+    public List<People> GetSpawnedPeople => spawnedPeople;
 
-    [Header("Spawn")]
+    [Header("Spawn Point")]
+    [SerializeField] private Transform outsideStandingPoint;
+    [SerializeField] private Transform[] standingPoints;
+
+    [Header("Spawn Time")]
     [SerializeField] private float minSpawnTime;
     [SerializeField] private float maxSpawnTime;
 
@@ -21,18 +25,14 @@ public class LineSpawner : MonoBehaviour
 
         IEnumerator SpawnPeople()
         {
+            yield return new WaitForSeconds(1);
+
             for (int i = 0; i < 5; i++)
             {
-                GameObject newPeople = Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], standingPoints[i].position, Quaternion.identity);
+                GameObject newPeople = Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], outsideStandingPoint.position, Quaternion.identity);
                 People people = newPeople.GetComponent<People>();
-                people.lineSpawner = this;
+                people.Init(this, standingPoints[i].position);
                 spawnedPeople.Add(people);
-
-                // Start for first index
-                if (i == 0)
-                {
-                    spawnedPeople[i].StartCounting();
-                }
 
                 yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime + 1));
             }
@@ -44,30 +44,20 @@ public class LineSpawner : MonoBehaviour
     {
         if (spawnedPeople.Count > 0)
         {
-            StartCoroutine(RemoveOrder());
+            // Remove the first point
+            spawnedPeople.RemoveAt(0);
 
-            IEnumerator RemoveOrder()
+            // Move one step
+            for (int i = 0; i < spawnedPeople.Count; i++)
             {
-                spawnedPeople[0].StartCounting();
-
-                // Remove the first point
-                Destroy(spawnedPeople[0].gameObject);
-                spawnedPeople.RemoveAt(0);
-
-                // Move one step
-                for (int i = 0; i < spawnedPeople.Count; i++)
-                {
-                    spawnedPeople[i].transform.position = standingPoints[i].position;
-                }
-
-                yield return new WaitForSeconds(0.5f);
-
-                // Spawn new people
-                GameObject newPeople = Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], standingPoints[standingPoints.Length - 1].position, Quaternion.identity);
-                People people = newPeople.GetComponent<People>();
-                people.lineSpawner = this;
-                spawnedPeople.Add(people);
+                spawnedPeople[i].StartMove(standingPoints[i].position);
             }
+
+            // Spawn new people
+            GameObject newPeople = Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], outsideStandingPoint.position, Quaternion.identity);
+            People people = newPeople.GetComponent<People>();
+            people.Init(this, standingPoints[spawnedPeople.Count].position);
+            spawnedPeople.Add(people);
         }
     }
 }

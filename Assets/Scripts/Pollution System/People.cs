@@ -4,13 +4,48 @@ using UnityEngine.UI;
 
 public class People : MonoBehaviour
 {
-    public LineSpawner lineSpawner;
+    [HideInInspector] public LineSpawner lineSpawner;
     private Coroutine countingCoroutine;
+
+    [Header("Pollution")]
     [SerializeField] private GameObject pollutionMonsterPrefab;
+
+    [Header("Cooldown")]
+    private bool isReadyToCooldown;
     [SerializeField] private float minStartTime;
     [SerializeField] private float maxStartTime;
     [SerializeField] private float timeElapsed = 0f;
+
+    [Header("User Interface")]
+    [SerializeField] private Image timeIndicatorBG;
     [SerializeField] private Image timeIndicator;
+
+    public void Init(LineSpawner lineSpawner, Vector3 position)
+    {
+        this.lineSpawner = lineSpawner;
+
+        timeIndicatorBG.enabled = false;
+        timeIndicator.enabled = false;
+
+        StartCounting();
+        StartMove(position);
+    }
+
+    public void StartMove(Vector3 position)
+    {
+        StartCoroutine(Move(position));
+    }
+
+    IEnumerator Move(Vector3 position)
+    {
+        while (Vector2.Distance(transform.position, position) > 0.1f)
+        {
+            transform.Translate(Vector3.right * 1 * Time.deltaTime);
+            yield return null;
+        }
+
+        isReadyToCooldown = true;
+    }
 
     public void StartCounting()
     {
@@ -29,16 +64,26 @@ public class People : MonoBehaviour
 
         while (timeElapsed > 0)
         {
-            timeElapsed -= Time.deltaTime;
-            float value = timeElapsed / startingTime;
-            timeIndicator.fillAmount = value;
+            if (isReadyToCooldown && lineSpawner.GetSpawnedPeople[0].GetInstanceID() == this.GetInstanceID())
+            {
+                if (timeIndicator.enabled == false)
+                {
+                    timeIndicatorBG.enabled = true;
+                    timeIndicator.enabled = true;
+                }
+
+                timeElapsed -= Time.deltaTime;
+                float value = timeElapsed / startingTime;
+                timeIndicator.fillAmount = value;
+            }
+
             yield return null;
         }
 
         timeElapsed = 0;
 
+        Destroy(gameObject);
         lineSpawner.RemoveFirstPeople();
-        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y);
-        GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
+        PollutionSpawner.Instance.Spawn();
     }
 }
