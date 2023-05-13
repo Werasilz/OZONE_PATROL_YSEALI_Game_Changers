@@ -12,8 +12,8 @@ public class PollutionMonster : MonoBehaviour, IInteractable
 
     void Start()
     {
-        monsterImage.enabled = true;
-        deadImage.enabled = false;
+        monsterImage.gameObject.SetActive(true);
+        deadImage.gameObject.SetActive(false);
 
         flyCoroutine = StartCoroutine(Fly());
 
@@ -37,9 +37,9 @@ public class PollutionMonster : MonoBehaviour, IInteractable
         {
             isDead = true;
             StopCoroutine(flyCoroutine);
-            monsterImage.enabled = false;
-            deadImage.enabled = true;
-            Destroy(gameObject, 0.1f);
+            monsterImage.gameObject.SetActive(false);
+            deadImage.gameObject.SetActive(true);
+            Destroy(gameObject, 1f);
         }
     }
 }
