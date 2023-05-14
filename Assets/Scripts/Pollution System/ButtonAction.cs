@@ -92,7 +92,15 @@ public class ButtonAction : MonoBehaviour
                 if (currentScore == scoreRequired)
                 {
                     yield return new WaitForSeconds(1);
+
+                    while (createdVehicle.transform.position.x < 5f)
+                    {
+                        createdVehicle.transform.Translate(Vector3.right * 10 * Time.deltaTime);
+                        yield return null;
+                    }
+
                     Destroy(createdVehicle);
+
                     PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform.position);
                     break;
                 }
