@@ -30,6 +30,11 @@ public class ButtonAction : MonoBehaviour
     private Coroutine getPeopleIntoLineCoroutine;
     private Coroutine cooldownCoroutine;
 
+    private void Start()
+    {
+        cooldownCoroutine = StartCoroutine(StartCooldown(3));
+    }
+
     public void Interact()
     {
         if (createdVehicle == null && isCooldownActive == false)
@@ -39,7 +44,7 @@ public class ButtonAction : MonoBehaviour
             createdVehicle = newVehicle;
             moveCoroutine = StartCoroutine(Move(createdVehicle, vehicleSpawnPoint.position));
             getPeopleIntoLineCoroutine = StartCoroutine(GetPeopleIntoLine());
-            cooldownCoroutine = StartCoroutine(StartCooldown());
+            cooldownCoroutine = StartCoroutine(StartCooldown(cooldownTime));
         }
     }
 
@@ -65,7 +70,7 @@ public class ButtonAction : MonoBehaviour
             yield return null;
         }
 
-        yield return null;
+        vehicle.transform.position = position;
     }
 
     IEnumerator GetPeopleIntoLine()
@@ -99,7 +104,7 @@ public class ButtonAction : MonoBehaviour
         }
     }
 
-    IEnumerator StartCooldown()
+    IEnumerator StartCooldown(float time)
     {
         if (isCooldownActive)
         {
@@ -109,13 +114,13 @@ public class ButtonAction : MonoBehaviour
 
         // Start cooldown
         isCooldownActive = true;
-        remainingCooldownTime = cooldownTime;
+        remainingCooldownTime = time;
 
         // Cooling down
         while (remainingCooldownTime > 0f)
         {
             remainingCooldownTime -= Time.deltaTime;
-            cooldownIndicator.fillAmount = remainingCooldownTime / cooldownTime;
+            cooldownIndicator.fillAmount = remainingCooldownTime / time;
             yield return null;
         }
 
