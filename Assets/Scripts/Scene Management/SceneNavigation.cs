@@ -17,16 +17,6 @@ public class SceneNavigation : MonoBehaviour
         FindObjectOfType<SceneLoaderManager>().LoadCityMap();
     }
 
-    public void LoadTownMap()
-    {
-        FindObjectOfType<SceneLoaderManager>().LoadTownMap();
-    }
-
-    public void LoadForestMap()
-    {
-        FindObjectOfType<SceneLoaderManager>().LoadForestMap();
-    }
-
     public void ExitGame()
     {
         Application.Quit();

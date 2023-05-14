@@ -271,21 +271,9 @@ MonoBehaviour:
     _path: Assets/Scenes/Main Scenes/[2] Level Select.unity
     _buildIndex: 2
   - _sceneOB: {fileID: 102900000, guid: f1fe16468876ac247bcdd8849b8d99ac, type: 3}
-    _name: '[3.1] City Map'
-    _path: Assets/Scenes/Main Scenes/[3.1] City Map.unity
+    _name: '[3] City Map'
+    _path: Assets/Scenes/Main Scenes/[3] City Map.unity
     _buildIndex: 3
-  - _sceneOB: {fileID: 102900000, guid: 4d33654d37aef4f9d90b5e0dc3b4082a, type: 3}
-    _name: '[3.2] Town Map'
-    _path: Assets/Scenes/Main Scenes/[3.2] Town Map.unity
-    _buildIndex: 4
-  - _sceneOB: {fileID: 102900000, guid: 7f1f0e26605d540f3a64a29a38267469, type: 3}
-    _name: '[3.3] Forest Map'
-    _path: Assets/Scenes/Main Scenes/[3.3] Forest Map.unity
-    _buildIndex: 5
-  - _sceneOB: {fileID: 102900000, guid: 5d3b490caf57744298aaaec673d9d934, type: 3}
-    _name: '[4] Summary'
-    _path: Assets/Scenes/Main Scenes/[4] Summary.unity
-    _buildIndex: 6
   - _sceneOB: {fileID: 102900000, guid: 51e2270e97646b94989aa6d96f1b985f, type: 3}
     _name: '[99] PersistentScene'
     _path: Assets/Scenes/Main Scenes/[99] PersistentScene.unity

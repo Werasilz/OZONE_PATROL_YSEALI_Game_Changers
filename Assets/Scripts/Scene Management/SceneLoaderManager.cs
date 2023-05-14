@@ -85,18 +85,6 @@ public class SceneLoaderManager : MonoBehaviour
     {
         LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.CityMap].Name);
     }
-
-    [ContextMenu("Load Town Map")]
-    public void LoadTownMap()
-    {
-        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.TownMap].Name);
-    }
-
-    [ContextMenu("Load Forest Map")]
-    public void LoadForestMap()
-    {
-        LoadScene(GetSceneName(currentActiveScene), scenes[(int)SceneIndexes.ForestMap].Name);
-    }
     #endregion
 
     public void LoadScene(string currentSceneName, string nextSceneName)
@@ -169,7 +157,4 @@ public enum SceneIndexes
     MainMenu = 1,
     LevelSelect = 2,
     CityMap = 3,
-    TownMap = 4,
-    ForestMap = 5,
-    Summary = 6,
 }

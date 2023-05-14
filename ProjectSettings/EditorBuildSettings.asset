@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Scenes/[2] Level Select.unity
     guid: c53298ce9a3d04a1a8f6dc134ec238d8
   - enabled: 1
-    path: Assets/Scenes/Main Scenes/[3.1] City Map.unity
+    path: Assets/Scenes/Main Scenes/[3] City Map.unity
     guid: f1fe16468876ac247bcdd8849b8d99ac
   - enabled: 1
     path: Assets/Scenes/Main Scenes/[3.2] Town Map.unity
