@@ -543,7 +543,9 @@ MonoBehaviour:
   - {fileID: 1054578429}
   - {fileID: 332714271}
   - {fileID: 507413679}
-  m_soundEffectClips: []
+  m_soundEffectClips:
+  - {fileID: 8300000, guid: fa7a9fc12e6094f168c4b6cccff41ec8, type: 3}
+  - {fileID: 8300000, guid: c7383fece6fd2436b8d2775b15575a85, type: 3}
   m_musicClips:
   - {fileID: 8300000, guid: 3e22fadaa7d314db69b96b2cc93a80ab, type: 3}
 --- !u!4 &764382259

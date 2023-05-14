@@ -37,6 +37,8 @@ public class ButtonAction : MonoBehaviour
 
     public void Interact()
     {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.soundEffectClips[0]);
+
         if (createdVehicle == null && isCooldownActive == false)
         {
             // Spawn solver unit
@@ -71,6 +73,7 @@ public class ButtonAction : MonoBehaviour
         }
 
         vehicle.transform.position = position;
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.soundEffectClips[1]);
     }
 
     IEnumerator GetPeopleIntoLine()
