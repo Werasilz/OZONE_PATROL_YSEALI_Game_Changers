@@ -39,6 +39,7 @@ public class PollutionMonster : MonoBehaviour, IInteractable
         if (isDead == false)
         {
             isDead = true;
+            SoundManager.Instance.PlaySoundEffect(2);
             StopCoroutine(flyCoroutine);
             monsterImage.gameObject.SetActive(false);
             deadImage.gameObject.SetActive(true);

@@ -16,13 +16,13 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
     }
-    
-    private void Start() 
+
+    private void Start()
     {
-      PlayMusic(0);
+        PlayMusic(0);
     }
 
-    public void PlaySoundEffect(AudioClip clip)
+    public void PlaySoundEffect(int index)
     {
         // Check if any sound effect sources are available
         bool foundAvailableSource = false;
@@ -30,7 +30,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             if (!source.isPlaying)
             {
-                source.clip = clip;
+                source.clip = m_soundEffectClips[index];
                 source.Play();
                 foundAvailableSource = true;
                 break;
@@ -41,7 +41,7 @@ public class SoundManager : Singleton<SoundManager>
         if (!foundAvailableSource)
         {
             AudioSource newSource = gameObject.AddComponent<AudioSource>();
-            newSource.clip = clip;
+            newSource.clip = m_soundEffectClips[index];
             newSource.Play();
             soundEffectSources.Add(newSource);
         }

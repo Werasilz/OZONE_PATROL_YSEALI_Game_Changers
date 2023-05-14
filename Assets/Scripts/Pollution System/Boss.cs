@@ -38,6 +38,8 @@ public class Boss : MonoBehaviour, IInteractable
             }
             else
             {
+                SoundManager.Instance.PlaySoundEffect(2);
+
                 bossHP -= damage;
                 animator.Play("Hit");
                 Vector3 spawnPosition = new Vector3(Random.Range(bottomLeftSpawnPoint.position.x, bottomRightSpawnPoint.position.x), Random.Range(bottomLeftSpawnPoint.position.y, topLeftSpawnPoint.position.y));

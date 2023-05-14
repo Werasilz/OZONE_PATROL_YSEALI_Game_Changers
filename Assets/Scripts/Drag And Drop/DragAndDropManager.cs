@@ -5,7 +5,6 @@ using UnityEngine.Rendering;
 public class DragAndDropManager : Singleton<DragAndDropManager>
 {
     private Vector3 velocity = Vector3.zero;
-    private Camera mainCamera;
 
     [Header("Drag Settings")]
     [SerializeField] private float mouseDragSpeed = 0.05f;
@@ -15,12 +14,6 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
     public bool isDragging => draggable != null;
 
     [HideInInspector] public bool debugHit;
-
-    public override void Awake()
-    {
-        base.Awake();
-        mainCamera = Camera.main;
-    }
 
     private void OnEnable()
     {
@@ -35,7 +28,7 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
     private void MousePressed(Vector2 touchPosition, float time)
     {
         // Raycast using touch position
-        Ray ray = mainCamera.ScreenPointToRay(touchPosition);
+        Ray ray = Camera.main.ScreenPointToRay(touchPosition);
         RaycastHit2D hit2D = Physics2D.GetRayIntersection(ray);
 
         if (hit2D.collider != null)
@@ -80,7 +73,7 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
         draggable?.OnStartDrag();
 
         // Distance from clicked object and camera (default is 10)
-        float initialDistance = Vector3.Distance(clickedObject.transform.position, mainCamera.transform.position);
+        float initialDistance = Vector3.Distance(clickedObject.transform.position, Camera.main.transform.position);
 
         // If has contact with touch value will not zero
         while (TouchInputManager.touchPress != 0)
@@ -89,7 +82,7 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
             if (clickedObject == null) yield break;
 
             // Raycast using touch position
-            Ray ray = mainCamera.ScreenPointToRay(TouchInputManager.touchPosition);
+            Ray ray = Camera.main.ScreenPointToRay(TouchInputManager.touchPosition);
 
             // Get position
             Vector3 target = ray.GetPoint(initialDistance);
