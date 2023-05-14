@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class PollutionManager : Singleton<PollutionManager>
 {
     public PlayState playState = PlayState.Normal;
+
+    [Header("Happy")]
+    [SerializeField] private int happyScore;
+    [SerializeField] private TextMeshProUGUI happyScoreText;
 
     [Header("Score")]
     [SerializeField] private int pollutionScore;
@@ -28,6 +34,7 @@ public class PollutionManager : Singleton<PollutionManager>
     [Header("Timer")]
     [SerializeField] private float startTime = 60f;
     [SerializeField] private float elapsedTime = 0;
+    private Coroutine animateHappyScoreCoroutine;
 
     private void Start()
     {
@@ -35,6 +42,7 @@ public class PollutionManager : Singleton<PollutionManager>
         elapsedTime = startTime;
         pollutionScore = maxPollutionIndicator / 2;
         pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
+        happyScoreText.text = happyScore.ToString();
 
         SoundManager.Instance.PlayMusic(0);
     }
@@ -70,12 +78,22 @@ public class PollutionManager : Singleton<PollutionManager>
         if (popupSpawnPoint != null)
         {
             GameObject newPopup = Instantiate(minusPopup, popupSpawnPoint.position, Quaternion.identity);
+            newPopup.GetComponent<Popup>().SetText("-" + score.ToString());
         }
     }
 
     public void ReducePollutionScore(int score, Vector3 popupSpawnPoint)
     {
         pollutionScore += score;
+        int currentHappyScore = happyScore;
+        happyScore += score;
+
+        if (animateHappyScoreCoroutine != null)
+        {
+            StopCoroutine(animateHappyScoreCoroutine);
+        }
+
+        animateHappyScoreCoroutine = StartCoroutine(AnimateHappyScore(currentHappyScore, happyScore));
 
         if (pollutionScore > maxPollutionIndicator)
         {
@@ -87,11 +105,23 @@ public class PollutionManager : Singleton<PollutionManager>
         if (popupSpawnPoint != null)
         {
             GameObject newPopup = Instantiate(plusPopup, popupSpawnPoint, Quaternion.identity);
+            newPopup.GetComponent<Popup>().SetText("+" + score.ToString());
         }
 
         if (pollutionScore >= maxPollutionIndicator)
         {
             BossScene();
+        }
+    }
+
+    private IEnumerator AnimateHappyScore(int currentScore, int targetScore)
+    {
+        while (currentScore < targetScore)
+        {
+            currentScore++;
+            happyScoreText.text = currentScore.ToString();
+
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

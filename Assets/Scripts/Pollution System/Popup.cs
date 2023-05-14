@@ -9,6 +9,11 @@ public class Popup : MonoBehaviour
     private float timer;
     private float fadingTimeElapsed;
 
+    public void SetText(string text)
+    {
+        popupText.text = text;
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
