@@ -16,6 +16,11 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
     }
+    
+    private void Start() 
+    {
+      PlayMusic(0);
+    }
 
     public void PlaySoundEffect(AudioClip clip)
     {

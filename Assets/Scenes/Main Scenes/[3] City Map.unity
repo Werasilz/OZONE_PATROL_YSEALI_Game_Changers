@@ -779,6 +779,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &523450380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 661092085, guid: 04d4db6d81f06497bb41ca6a34ce2cd6, type: 3}
+  m_PrefabInstance: {fileID: 2231956156263895777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &535063483
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1003,7 @@ MonoBehaviour:
   topLeftSpawnPoint: {fileID: 391765577}
   topRightSpawnPoint: {fileID: 1420709563}
   successScreen: {fileID: 700353824}
+  ozoneBar: {fileID: 523450380}
 --- !u!95 &856410775
 Animator:
   serializedVersion: 5

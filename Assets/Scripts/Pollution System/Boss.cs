@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour, IInteractable
 
     [Header("User Interface")]
     [SerializeField] private GameObject successScreen;
+    [SerializeField] private GameObject ozoneBar;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class Boss : MonoBehaviour, IInteractable
                 isDead = true;
                 animator.Play("Dead");
                 successScreen.SetActive(true);
+                ozoneBar.SetActive(false);
             }
             else
             {

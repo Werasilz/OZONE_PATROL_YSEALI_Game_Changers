@@ -47,8 +47,6 @@ public class PollutionManager : Singleton<PollutionManager>
         pollutionScore = maxPollutionIndicator / 2;
         pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
         happyScoreText.text = happyScore.ToString();
-
-        SoundManager.Instance.PlayMusic(0);
     }
 
     private void Update()
@@ -166,7 +164,7 @@ public class PollutionManager : Singleton<PollutionManager>
             }
 
             pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }
