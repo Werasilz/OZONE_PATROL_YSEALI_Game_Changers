@@ -24,15 +24,30 @@ public class PollutionManager : Singleton<PollutionManager>
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject bossScene;
 
+    [Header("Timer")]
+    [SerializeField] private float startTime = 60f;
+    [SerializeField] private float elapsedTime = 0;
+
     private void Start()
     {
         playState = PlayState.Normal;
+        elapsedTime = startTime;
     }
 
-    [ContextMenu("Reduce Pollution")]
-    public void CheatReducePollution()
+    private void Update()
     {
-        pollutionScore = 100;
+        elapsedTime -= Time.deltaTime;
+
+        if (elapsedTime < 0)
+        {
+            elapsedTime = 0;
+            BossScene();
+        }
+    }
+
+    [ContextMenu("Boss Scene")]
+    public void GoToBossScene()
+    {
         BossScene();
     }
 
@@ -69,30 +84,29 @@ public class PollutionManager : Singleton<PollutionManager>
             GameObject newPopup = Instantiate(plusPopup, popupSpawnPoint.position, Quaternion.identity);
         }
 
-        BossScene();
+        if (pollutionScore >= 100)
+        {
+            BossScene();
+        }
     }
 
     public void BossScene()
     {
-        if (pollutionScore >= 100)
+        playState = PlayState.Boss;
+        buttonActionAnimator.enabled = true;
+
+        for (int j = 0; j < lineSpawners.Length; j++)
         {
-            pollutionScore = 100;
-            playState = PlayState.Boss;
-            buttonActionAnimator.enabled = true;
-
-            for (int j = 0; j < lineSpawners.Length; j++)
-            {
-                lineSpawners[j].ClearAllPeople();
-            }
-
-            for (int i = 0; i < buttonActions.Length; i++)
-            {
-                buttonActions[i].ClearAction();
-            }
-
-            mainCamera.SetActive(false);
-            bossScene.SetActive(true);
+            lineSpawners[j].ClearAllPeople();
         }
+
+        for (int i = 0; i < buttonActions.Length; i++)
+        {
+            buttonActions[i].ClearAction();
+        }
+
+        mainCamera.SetActive(false);
+        bossScene.SetActive(true);
     }
 }
 public enum PlayState

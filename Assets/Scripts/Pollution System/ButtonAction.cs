@@ -45,9 +45,14 @@ public class ButtonAction : MonoBehaviour
 
     public void ClearAction()
     {
-        StopCoroutine(moveCoroutine);
-        StopCoroutine(getPeopleIntoLineCoroutine);
-        StopCoroutine(cooldownCoroutine);
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+
+        if (getPeopleIntoLineCoroutine != null)
+            StopCoroutine(getPeopleIntoLineCoroutine);
+
+        if (cooldownCoroutine != null)
+            StopCoroutine(cooldownCoroutine);
 
         Destroy(createdVehicle);
     }
