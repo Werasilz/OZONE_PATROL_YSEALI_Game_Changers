@@ -12,7 +12,8 @@ public class People : MonoBehaviour
     [SerializeField] private GameObject pollutionMonsterPrefab;
 
     [Header("Cooldown")]
-    private bool isReadyToCooldown;
+    private bool m_isStartWaiting;
+    public bool IsStartWaiting => m_isStartWaiting;
     [SerializeField] private float minStartTime;
     [SerializeField] private float maxStartTime;
     [SerializeField] private float timeElapsed = 0f;
@@ -49,7 +50,7 @@ public class People : MonoBehaviour
             yield return null;
         }
 
-        isReadyToCooldown = true;
+        m_isStartWaiting = true;
     }
 
     public void StartCounting()
@@ -69,7 +70,7 @@ public class People : MonoBehaviour
 
         while (timeElapsed > 0)
         {
-            if (isReadyToCooldown && lineSpawner.GetSpawnedPeople[0].GetInstanceID() == this.GetInstanceID())
+            if (m_isStartWaiting && lineSpawner.GetSpawnedPeople[0].GetInstanceID() == this.GetInstanceID())
             {
                 if (timeIndicator.enabled == false)
                 {
@@ -87,11 +88,19 @@ public class People : MonoBehaviour
         }
 
         timeElapsed = 0;
-
-        Destroy(gameObject);
         lineSpawner.RemoveFirstPeople();
+        timeIndicatorBG.enabled = false;
+        timeIndicator.enabled = false;
 
         // Reduce ozone
         PollutionManager.Instance.AddPollutionScore(pollutionReduceScore, popupSpawnPoint);
+
+        while (transform.localPosition.x < 3)
+        {
+            transform.Translate(Vector3.right * 4f * Time.deltaTime);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

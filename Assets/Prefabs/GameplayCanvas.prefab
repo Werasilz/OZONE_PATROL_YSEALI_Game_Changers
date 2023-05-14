@@ -579,9 +579,8 @@ MonoBehaviour:
   scoreRequired: 1
   pollutionReduceScore: 10
   vehicleSpawnPoint: {fileID: 0}
-  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
-  timeToGetIntoLine: 1.5
+  timeToGetIntoLine: 0.25
   currentScore: 0
   cooldownTime: 5
   remainingCooldownTime: 0
@@ -738,9 +737,8 @@ MonoBehaviour:
   scoreRequired: 5
   pollutionReduceScore: 20
   vehicleSpawnPoint: {fileID: 0}
-  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
-  timeToGetIntoLine: 1.5
+  timeToGetIntoLine: 0.25
   currentScore: 0
   cooldownTime: 10
   remainingCooldownTime: 0
@@ -1286,9 +1284,8 @@ MonoBehaviour:
   scoreRequired: 10
   pollutionReduceScore: 30
   vehicleSpawnPoint: {fileID: 0}
-  createdVehicle: {fileID: 0}
   lineSpawner: {fileID: 0}
-  timeToGetIntoLine: 1.5
+  timeToGetIntoLine: 0.25
   currentScore: 0
   cooldownTime: 15
   remainingCooldownTime: 0

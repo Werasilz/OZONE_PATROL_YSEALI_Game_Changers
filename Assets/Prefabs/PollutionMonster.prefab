@@ -167,7 +167,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 20
 --- !u!114 &1617434150955806853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bc9b5fec39b45b5bd372ab1cebf511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yAxisDestination: 4
+  yAxisDestination: 3
   speed: 1
+  pollutionReduceScore: 10
   monsterImage: {fileID: 5301057793251919118}
   deadImage: {fileID: 4274937341322277051}
 --- !u!1 &4441541896906126385

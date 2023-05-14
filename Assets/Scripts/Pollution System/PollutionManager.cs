@@ -12,11 +12,11 @@ public class PollutionManager : Singleton<PollutionManager>
 
     public void AddPollutionScore(int score, Transform popupSpawnPoint)
     {
-        pollutionScore += score;
+        pollutionScore -= score;
 
-        if (pollutionScore > 100)
+        if (pollutionScore < 0)
         {
-            pollutionScore = 100;
+            pollutionScore = 0;
         }
 
         pollutionIndicator.fillAmount = pollutionScore / 100f;
@@ -29,11 +29,11 @@ public class PollutionManager : Singleton<PollutionManager>
 
     public void ReducePollutionScore(int score, Transform popupSpawnPoint)
     {
-        pollutionScore -= score;
+        pollutionScore += score;
 
-        if (pollutionScore < 0)
+        if (pollutionScore > 100)
         {
-            pollutionScore = 0;
+            pollutionScore = 100;
         }
 
         pollutionIndicator.fillAmount = pollutionScore / 100f;

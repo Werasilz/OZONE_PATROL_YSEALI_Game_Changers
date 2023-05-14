@@ -31,11 +31,23 @@ public class ButtonAction : MonoBehaviour
         if (createdVehicle == null && isCooldownActive == false)
         {
             // Spawn solver unit
-            GameObject newSolver = Instantiate(vehiclePrefab, vehicleSpawnPoint.position, Quaternion.identity);
-            createdVehicle = newSolver;
+            GameObject newVehicle = Instantiate(vehiclePrefab, vehicleSpawnPoint.position + (Vector3.up * 10), Quaternion.identity);
+            createdVehicle = newVehicle;
+            StartCoroutine(Move(createdVehicle, vehicleSpawnPoint.position));
             StartCoroutine(GetPeopleIntoLine());
             StartCoroutine(StartCooldown());
         }
+    }
+
+    IEnumerator Move(GameObject vehicle, Vector3 position)
+    {
+        while (Vector2.Distance(vehicle.transform.position, position) > 0.25f)
+        {
+            vehicle.transform.Translate(Vector3.down * 30 * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return null;
     }
 
     IEnumerator GetPeopleIntoLine()
@@ -44,18 +56,25 @@ public class ButtonAction : MonoBehaviour
         {
             yield return new WaitForSeconds(timeToGetIntoLine);
 
-            currentScore += 1;
-            createdVehicle.GetComponent<Vehicle>().SetAmountText(currentScore, scoreRequired);
-            Destroy(lineSpawner.GetSpawnedPeople[0].gameObject);
-            lineSpawner.RemoveFirstPeople();
-
-            // Reach the score
-            if (currentScore == scoreRequired)
+            while (lineSpawner.GetSpawnedPeople.Count > 0 && lineSpawner.GetSpawnedPeople[0].IsStartWaiting)
             {
-                yield return new WaitForSeconds(1);
-                Destroy(createdVehicle);
-                PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform);
-                break;
+                yield return new WaitForSeconds(timeToGetIntoLine);
+
+                currentScore += 1;
+                createdVehicle.GetComponent<Vehicle>().SetAmountText(currentScore, scoreRequired);
+                Destroy(lineSpawner.GetSpawnedPeople[0].gameObject);
+                lineSpawner.RemoveFirstPeople();
+
+                // Reach the score
+                if (currentScore == scoreRequired)
+                {
+                    yield return new WaitForSeconds(1);
+                    Destroy(createdVehicle);
+                    PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform);
+                    break;
+                }
+
+                yield return null;
             }
 
             yield return null;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4421731809820580325}
   - component: {fileID: -4967692025232026642}
+  - component: {fileID: 8815559180069223827}
   m_Layer: 0
   m_Name: PopupPlus
   m_TagString: Untagged
@@ -47,6 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   targetTimer: 0.75
+  popupText: {fileID: 6757546608592740499}
+--- !u!210 &8815559180069223827
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4777214703877753759}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 25
 --- !u!1 &9160051149922465213
 GameObject:
   m_ObjectHideFlags: 0
