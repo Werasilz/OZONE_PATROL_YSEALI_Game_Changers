@@ -544,7 +544,8 @@ MonoBehaviour:
   - {fileID: 332714271}
   - {fileID: 507413679}
   m_soundEffectClips: []
-  m_musicClips: []
+  m_musicClips:
+  - {fileID: 8300000, guid: 3e22fadaa7d314db69b96b2cc93a80ab, type: 3}
 --- !u!4 &764382259
 Transform:
   m_ObjectHideFlags: 0

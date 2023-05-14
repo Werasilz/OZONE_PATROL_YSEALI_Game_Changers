@@ -35,6 +35,8 @@ public class PollutionManager : Singleton<PollutionManager>
         elapsedTime = startTime;
         pollutionScore = maxPollutionIndicator / 2;
         pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
+
+        SoundManager.Instance.PlayMusic(0);
     }
 
     private void Update()
