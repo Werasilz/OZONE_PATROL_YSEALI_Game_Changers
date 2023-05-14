@@ -8,6 +8,7 @@ public class PollutionManager : Singleton<PollutionManager>
     [Header("Score")]
     [SerializeField] private int pollutionScore;
     [SerializeField] private Image pollutionIndicator;
+    [SerializeField] private int maxPollutionIndicator;
 
     [Header("Popup")]
     [SerializeField] private GameObject minusPopup;
@@ -21,7 +22,7 @@ public class PollutionManager : Singleton<PollutionManager>
 
     [Header("Boss")]
     [SerializeField] private Animator buttonActionAnimator;
-    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private Animator mainCameraAnimator;
     [SerializeField] private GameObject bossScene;
 
     [Header("Timer")]
@@ -32,6 +33,8 @@ public class PollutionManager : Singleton<PollutionManager>
     {
         playState = PlayState.Normal;
         elapsedTime = startTime;
+        pollutionScore = maxPollutionIndicator / 2;
+        pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
     }
 
     private void Update()
@@ -60,7 +63,7 @@ public class PollutionManager : Singleton<PollutionManager>
             pollutionScore = 0;
         }
 
-        pollutionIndicator.fillAmount = pollutionScore / 100f;
+        pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
 
         if (popupSpawnPoint != null)
         {
@@ -68,23 +71,23 @@ public class PollutionManager : Singleton<PollutionManager>
         }
     }
 
-    public void ReducePollutionScore(int score, Transform popupSpawnPoint)
+    public void ReducePollutionScore(int score, Vector3 popupSpawnPoint)
     {
         pollutionScore += score;
 
-        if (pollutionScore > 100)
+        if (pollutionScore > maxPollutionIndicator)
         {
-            pollutionScore = 100;
+            pollutionScore = maxPollutionIndicator;
         }
 
-        pollutionIndicator.fillAmount = pollutionScore / 100f;
+        pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
 
         if (popupSpawnPoint != null)
         {
-            GameObject newPopup = Instantiate(plusPopup, popupSpawnPoint.position, Quaternion.identity);
+            GameObject newPopup = Instantiate(plusPopup, popupSpawnPoint, Quaternion.identity);
         }
 
-        if (pollutionScore >= 100)
+        if (pollutionScore >= maxPollutionIndicator)
         {
             BossScene();
         }
@@ -94,6 +97,7 @@ public class PollutionManager : Singleton<PollutionManager>
     {
         playState = PlayState.Boss;
         buttonActionAnimator.enabled = true;
+        mainCameraAnimator.enabled = true;
 
         for (int j = 0; j < lineSpawners.Length; j++)
         {
@@ -105,7 +109,6 @@ public class PollutionManager : Singleton<PollutionManager>
             buttonActions[i].ClearAction();
         }
 
-        mainCamera.SetActive(false);
         bossScene.SetActive(true);
     }
 }

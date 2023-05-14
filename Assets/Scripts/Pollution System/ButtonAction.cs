@@ -88,7 +88,7 @@ public class ButtonAction : MonoBehaviour
                 {
                     yield return new WaitForSeconds(1);
                     Destroy(createdVehicle);
-                    PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform);
+                    PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, createdVehicle.transform.position);
                     break;
                 }
 

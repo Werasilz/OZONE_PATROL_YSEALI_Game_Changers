@@ -42,7 +42,7 @@ public class PollutionMonster : MonoBehaviour, IInteractable
             StopCoroutine(flyCoroutine);
             monsterImage.gameObject.SetActive(false);
             deadImage.gameObject.SetActive(true);
-            PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, transform);
+            PollutionManager.Instance.ReducePollutionScore(pollutionReduceScore, transform.position);
             Destroy(gameObject, 1f);
         }
     }
