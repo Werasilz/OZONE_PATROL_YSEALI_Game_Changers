@@ -59,7 +59,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
 --- !u!1 &3861978481414003295
 GameObject:
   m_ObjectHideFlags: 0

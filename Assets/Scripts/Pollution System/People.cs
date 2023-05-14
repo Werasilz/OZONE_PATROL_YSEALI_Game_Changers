@@ -94,6 +94,9 @@ public class People : MonoBehaviour
 
         // Reduce ozone
         PollutionManager.Instance.AddPollutionScore(pollutionReduceScore, popupSpawnPoint);
+        int random = Random.Range(0, 3);
+        if (random == 0)
+            CarSpawner.Instance.Spawn();
 
         while (transform.localPosition.x < 3)
         {

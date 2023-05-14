@@ -143,16 +143,31 @@ public class PollutionManager : Singleton<PollutionManager>
             buttonActions[i].ClearAction();
         }
 
+        buttonActionAnimator.enabled = true;
+
         if (warningLabel.activeInHierarchy == false)
             warningLabel.SetActive(true);
         yield return new WaitForSeconds(3f);
         warningLabel.SetActive(false);
         yield return new WaitForSeconds(1f);
 
-        buttonActionAnimator.enabled = true;
         mainCameraAnimator.enabled = true;
-
         bossScene.SetActive(true);
+
+        while (true)
+        {
+            if (pollutionScore > 0)
+            {
+                pollutionScore -= 10;
+            }
+            else
+            {
+                pollutionScore = 0;
+            }
+
+            pollutionIndicator.fillAmount = (float)pollutionScore / (float)maxPollutionIndicator;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 }
 public enum PlayState

@@ -29,6 +29,12 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
         GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, spawnPosition, Quaternion.identity);
     }
 
+    public void Spawn(Vector3 position)
+    {
+        // Spawn the pollution
+        GameObject newPollutionMonster = Instantiate(pollutionMonsterPrefab, position, Quaternion.identity);
+    }
+
     IEnumerator Spawner()
     {
         for (int i = 0; i < 200; i++)

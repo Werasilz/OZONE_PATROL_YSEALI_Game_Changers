@@ -52,7 +52,7 @@ MonoBehaviour:
   pollutionReduceScore: 10
   pollutionMonsterPrefab: {fileID: 1617434150955806852, guid: ca1776fc3bb774c11811967dd50d8f38, type: 3}
   minStartTime: 3
-  maxStartTime: 5
+  maxStartTime: 6
   timeElapsed: 0
   timeIndicatorBG: {fileID: 848078950899875864}
   timeIndicator: {fileID: 5004902249676442854}
