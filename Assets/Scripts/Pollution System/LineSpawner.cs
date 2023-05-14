@@ -8,6 +8,7 @@ public class LineSpawner : MonoBehaviour
     [SerializeField] private GameObject[] peoplePrefabs;
     [SerializeField] private List<People> spawnedPeople;
     public List<People> GetSpawnedPeople => spawnedPeople;
+    private Coroutine spawnPeopleCoroutine;
 
     [Header("Spawn Point")]
     [SerializeField] private Transform outsideStandingPoint;
@@ -21,7 +22,7 @@ public class LineSpawner : MonoBehaviour
     {
         spawnedPeople = new List<People>();
 
-        StartCoroutine(SpawnPeople());
+        spawnPeopleCoroutine = StartCoroutine(SpawnPeople());
 
         IEnumerator SpawnPeople()
         {
@@ -58,6 +59,16 @@ public class LineSpawner : MonoBehaviour
             People people = newPeople.GetComponent<People>();
             people.Init(this, standingPoints[spawnedPeople.Count].position);
             spawnedPeople.Add(people);
+        }
+    }
+
+    public void ClearAllPeople()
+    {
+        StopCoroutine(spawnPeopleCoroutine);
+
+        for (int i = 0; i < spawnedPeople.Count; i++)
+        {
+            Destroy(spawnedPeople[i].gameObject);
         }
     }
 }

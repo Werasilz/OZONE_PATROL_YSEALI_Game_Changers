@@ -26,6 +26,10 @@ public class ButtonAction : MonoBehaviour
     [Header("User Interface")]
     [SerializeField] private Image cooldownIndicator;
 
+    private Coroutine moveCoroutine;
+    private Coroutine getPeopleIntoLineCoroutine;
+    private Coroutine cooldownCoroutine;
+
     public void Interact()
     {
         if (createdVehicle == null && isCooldownActive == false)
@@ -33,10 +37,19 @@ public class ButtonAction : MonoBehaviour
             // Spawn solver unit
             GameObject newVehicle = Instantiate(vehiclePrefab, vehicleSpawnPoint.position + (Vector3.up * 10), Quaternion.identity);
             createdVehicle = newVehicle;
-            StartCoroutine(Move(createdVehicle, vehicleSpawnPoint.position));
-            StartCoroutine(GetPeopleIntoLine());
-            StartCoroutine(StartCooldown());
+            moveCoroutine = StartCoroutine(Move(createdVehicle, vehicleSpawnPoint.position));
+            getPeopleIntoLineCoroutine = StartCoroutine(GetPeopleIntoLine());
+            cooldownCoroutine = StartCoroutine(StartCooldown());
         }
+    }
+
+    public void ClearAction()
+    {
+        StopCoroutine(moveCoroutine);
+        StopCoroutine(getPeopleIntoLineCoroutine);
+        StopCoroutine(cooldownCoroutine);
+
+        Destroy(createdVehicle);
     }
 
     IEnumerator Move(GameObject vehicle, Vector3 position)

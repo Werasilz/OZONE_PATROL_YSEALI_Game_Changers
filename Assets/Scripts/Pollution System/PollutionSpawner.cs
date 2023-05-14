@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PollutionSpawner : Singleton<PollutionSpawner>
 {
-    [Header("Requester")]
+    [Header("Pollution")]
     [SerializeField] private GameObject pollutionMonsterPrefab;
 
     [Header("Spawn Point")]
@@ -31,8 +31,13 @@ public class PollutionSpawner : Singleton<PollutionSpawner>
 
     IEnumerator Spawner()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 200; i++)
         {
+            if (PollutionManager.Instance.playState == PlayState.Boss)
+            {
+                break;
+            }
+
             elapsedTime = Random.Range(minSpawnTime, maxSpawnTime + 1f);
 
             while (elapsedTime > 0)
