@@ -20,6 +20,10 @@ public class PollutionManager : Singleton<PollutionManager>
     [SerializeField] private GameObject minusPopup;
     [SerializeField] private GameObject plusPopup;
 
+    [Header("Notify")]
+    [SerializeField] private GameObject warningLabel;
+    [SerializeField] private GameObject successLabel;
+
     [Header("Line")]
     [SerializeField] private LineSpawner[] lineSpawners;
 
@@ -54,14 +58,21 @@ public class PollutionManager : Singleton<PollutionManager>
         if (elapsedTime < 0)
         {
             elapsedTime = 0;
-            BossScene();
+
+            if (playState == PlayState.Normal)
+            {
+                playState = PlayState.Boss;
+                StartCoroutine(BossScene());
+            }
+
+            return;
         }
     }
 
     [ContextMenu("Boss Scene")]
     public void GoToBossScene()
     {
-        BossScene();
+        StartCoroutine(BossScene());
     }
 
     public void AddPollutionScore(int score, Transform popupSpawnPoint)
@@ -107,11 +118,6 @@ public class PollutionManager : Singleton<PollutionManager>
             GameObject newPopup = Instantiate(plusPopup, popupSpawnPoint, Quaternion.identity);
             newPopup.GetComponent<Popup>().SetText("+" + score.ToString());
         }
-
-        if (pollutionScore >= maxPollutionIndicator)
-        {
-            BossScene();
-        }
     }
 
     private IEnumerator AnimateHappyScore(int currentScore, int targetScore)
@@ -125,12 +131,8 @@ public class PollutionManager : Singleton<PollutionManager>
         }
     }
 
-    public void BossScene()
+    IEnumerator BossScene()
     {
-        playState = PlayState.Boss;
-        buttonActionAnimator.enabled = true;
-        mainCameraAnimator.enabled = true;
-
         for (int j = 0; j < lineSpawners.Length; j++)
         {
             lineSpawners[j].ClearAllPeople();
@@ -140,6 +142,15 @@ public class PollutionManager : Singleton<PollutionManager>
         {
             buttonActions[i].ClearAction();
         }
+
+        if (warningLabel.activeInHierarchy == false)
+            warningLabel.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        warningLabel.SetActive(false);
+        yield return new WaitForSeconds(1f);
+
+        buttonActionAnimator.enabled = true;
+        mainCameraAnimator.enabled = true;
 
         bossScene.SetActive(true);
     }

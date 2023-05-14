@@ -68,9 +68,10 @@ public class LineSpawner : MonoBehaviour
 
         for (int i = 0; i < spawnedPeople.Count; i++)
         {
-            if (spawnedPeople[i].gameObject == null) continue;
-
+            spawnedPeople[i].StopCounting();
             Destroy(spawnedPeople[i].gameObject);
         }
+
+        spawnedPeople.Clear();
     }
 }

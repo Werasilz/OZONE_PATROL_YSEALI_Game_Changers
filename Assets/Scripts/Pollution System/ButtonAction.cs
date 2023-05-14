@@ -66,6 +66,9 @@ public class ButtonAction : MonoBehaviour
 
     IEnumerator Move(GameObject vehicle, Vector3 position)
     {
+        if (vehicle == null)
+            yield return null;
+
         while (Vector2.Distance(vehicle.transform.position, position) > 0.25f)
         {
             vehicle.transform.Translate(Vector3.down * 30 * Time.deltaTime);
