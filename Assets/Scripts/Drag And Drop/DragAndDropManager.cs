@@ -36,7 +36,32 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        MousePressed(Mouse.current.position.ReadValue(), (float)context.startTime);
+        // if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        // {
+        //     Vector2 mousePosition = Mouse.current.position.ReadValue();
+        //     float startTime = (float)context.startTime;
+        //     MousePressed(mousePosition, startTime);
+        // }
+        // if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+        // {
+        //     Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+        //     float startTime = (float)context.startTime;
+        //     MousePressed(touchPosition, startTime);
+        // }
+
+        // Check if the input is coming from the mouse or touch
+        if (context.control.device is Mouse)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            float startTime = (float)context.startTime;
+            MousePressed(mousePosition, startTime);
+        }
+        else if (context.control.device is Touchscreen)
+        {
+            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            float startTime = (float)context.startTime;
+            MousePressed(touchPosition, startTime);
+        }
     }
 
     private void MousePressed(Vector2 touchPosition, float time)
