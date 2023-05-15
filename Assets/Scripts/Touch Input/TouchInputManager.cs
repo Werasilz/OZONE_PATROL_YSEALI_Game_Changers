@@ -13,7 +13,7 @@ public class TouchInputManager : MonoBehaviour
 
     public static Vector2 touchPosition => touchControls.Touch.TouchPosition.ReadValue<Vector2>();
     public static float touchPress => touchControls.Touch.TouchPress.ReadValue<float>();
-    [HideInInspector] public bool debugTouchTime;
+    public bool debugTouchTime;
 
     void Awake()
     {

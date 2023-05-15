@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class DragAndDropManager : Singleton<DragAndDropManager>
@@ -17,16 +18,24 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
 
     private void OnEnable()
     {
-        TouchInputManager.OnStartTouch += MousePressed;
+        //TouchInputManager.OnStartTouch += MousePressed;
     }
 
     private void OnDisable()
     {
-        TouchInputManager.OnEndTouch -= MousePressed;
+        //TouchInputManager.OnEndTouch -= MousePressed;
+    }
+
+    public void OnTouchPress(InputAction.CallbackContext context)
+    {
+        print(":t");
+        MousePressed(context.ReadValue<Vector2>(), (float)context.startTime);
     }
 
     private void MousePressed(Vector2 touchPosition, float time)
     {
+        print("tes");
+
         // Raycast using touch position
         Ray ray = Camera.main.ScreenPointToRay(touchPosition);
         RaycastHit2D hit2D = Physics2D.GetRayIntersection(ray);
