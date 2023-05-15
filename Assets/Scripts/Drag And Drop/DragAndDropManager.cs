@@ -5,6 +5,8 @@ using UnityEngine.Rendering;
 
 public class DragAndDropManager : Singleton<DragAndDropManager>
 {
+    [SerializeField] private InputAction mouseClickAction;
+
     private Vector3 velocity = Vector3.zero;
 
     [Header("Drag Settings")]
@@ -18,17 +20,23 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
 
     private void OnEnable()
     {
+        mouseClickAction.Enable();
+        mouseClickAction.performed += OnClick;
+
         //TouchInputManager.OnStartTouch += MousePressed;
     }
 
     private void OnDisable()
     {
+        mouseClickAction.performed -= OnClick;
+        mouseClickAction.Disable();
+
         //TouchInputManager.OnEndTouch -= MousePressed;
     }
 
-    public void OnTouchPress(InputAction.CallbackContext context)
+    public void OnClick(InputAction.CallbackContext context)
     {
-        print(":t");
+        print("ttt");
         MousePressed(context.ReadValue<Vector2>(), (float)context.startTime);
     }
 
