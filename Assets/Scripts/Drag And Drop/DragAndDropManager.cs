@@ -36,14 +36,11 @@ public class DragAndDropManager : Singleton<DragAndDropManager>
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        print("ttt");
-        MousePressed(context.ReadValue<Vector2>(), (float)context.startTime);
+        MousePressed(Mouse.current.position.ReadValue(), (float)context.startTime);
     }
 
     private void MousePressed(Vector2 touchPosition, float time)
     {
-        print("tes");
-
         // Raycast using touch position
         Ray ray = Camera.main.ScreenPointToRay(touchPosition);
         RaycastHit2D hit2D = Physics2D.GetRayIntersection(ray);
