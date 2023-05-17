@@ -1,6 +1,8 @@
-![Screenshot1](images/ozonepatrollogo.png)
+<p align="center">
+  <img src="Images/ozonepatrollogo.png" style="width: 50%; height: auto; text-align: center;">
+</p>
 
-# OZONE_PATROL_YSEALI_Game_Changers
+# OZONE PATROL
 Clear the air and the sky before the Big Haze Monster Take Over!
 
 ## Introduction
